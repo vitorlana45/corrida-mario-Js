@@ -6,7 +6,10 @@ export const playersList = [
         MANOBRABILIDADE: 3,
         PODER: 3,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "red",
+            "blue"
+        ]
     },
     {
         NOME: "Luigi",
@@ -14,7 +17,10 @@ export const playersList = [
         MANOBRABILIDADE: 4,
         PODER: 4,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "#00fe00",
+            "blue"
+        ]
     },
     {
         NOME: "Peach",
@@ -22,7 +28,10 @@ export const playersList = [
         MANOBRABILIDADE: 4,
         PODER: 2,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "#FF1493",
+            "yellow",
+            ]
     },
     {
         NOME: "Yoshi",
@@ -30,7 +39,11 @@ export const playersList = [
         MANOBRABILIDADE: 4,
         PODER: 3,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "#00fe00",
+            "white",
+            "red"
+        ]
     },
     {
         NOME: "Donkey Kong",
@@ -38,7 +51,10 @@ export const playersList = [
         MANOBRABILIDADE: 2,
         PODER: 5,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "brown",
+            "white"
+        ]
     },
     {
         NOME: "Bowser",
@@ -46,7 +62,11 @@ export const playersList = [
         MANOBRABILIDADE: 2,
         PODER: 5,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "red",
+            "green",
+            "yellow"
+        ]
     },
 
     {
@@ -55,6 +75,10 @@ export const playersList = [
         MANOBRABILIDADE: 2,
         PODER: 5,
         PONTOS: 0,
-        COLOR: "black"
+        COLOR: [
+            "red",
+            "white",
+            "blue"
+        ]
     }
 ];

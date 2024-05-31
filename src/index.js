@@ -8,9 +8,12 @@ function start() {
 
         let nomeImage = player.NOME.toLowerCase().replace(" ", "");
 
-        const template = `<div class="card-container">
+        let colors = player.COLOR.length > 2 ?
+        `linear-gradient(to right, ${player.COLOR[0]}, ${player.COLOR[1]}, ${player.COLOR[2]})`:
+        `linear-gradient(to right, ${player.COLOR[0]}, ${player.COLOR[1]})`
 
-        
+        const template = `<div class="card-container" style="background: ${colors}">
+
         <img class= "player-${nomeImage}" src="./img/${nomeImage}.gif" alt="">
 
             <div>
@@ -28,26 +31,6 @@ function start() {
     mappedCard()
 }
 
-// function synchronizeGIFs() {
-//     const intervalTime = 9000; // Tempo em milissegundos para reiniciar os GIFs (ajuste conforme necessário)
-
-//     function restartGIFs() {
-//         const gifs = document.querySelectorAll(".card-container img");
-//         gifs.forEach(gif => {
-//             const src = gif.src;
-//             gif.src = ""; // Limpa a fonte do GIF
-//             gif.src = src; // Reatribui a fonte para reiniciar o GIF
-//         });
-//     }
-
-//     setInterval(restartGIFs, intervalTime);
-// }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     renderPlayers();
-//     synchronizeGIFs();
-// });
-
 function mappedCard() {
     let result;
     document.querySelectorAll(".card-container").forEach((card) => {
@@ -64,4 +47,3 @@ function mappedCard() {
 // }
 
 start();
-// synchronizeGIFs();
