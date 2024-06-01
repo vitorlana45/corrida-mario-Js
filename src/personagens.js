@@ -52,8 +52,8 @@ export const playersList = [
         PODER: 5,
         PONTOS: 0,
         COLOR: [
-            "brown",
-            "white"
+            "#b71422",
+            "#f0f1ec"
         ]
     },
     {
