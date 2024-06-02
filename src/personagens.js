@@ -71,9 +71,9 @@ export const playersList = [
 
     {
         NOME: "Toad",
-        VELOCIDADE: 5,
+        VELOCIDADE: 3,
         MANOBRABILIDADE: 2,
-        PODER: 5,
+        PODER: 3,
         PONTOS: 0,
         COLOR: [
             "red",

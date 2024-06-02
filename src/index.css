@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
 body {
 
     margin: 0;
@@ -8,88 +7,175 @@ body {
     background-image: url('./img/background.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center ;
+    background-position: center;
     height: 100%;
     font-family: 'Press Start 2P', cursive;
+
     background-attachment: fixed;
+    overflow-x: hidden;
 
 }
 
 .app {
 
-    overflow-x: hidden;
     width: 100vw;
     height: 100vh;
 
-    >header {
-        
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid blue;
-
-
-        width: 100%;
-        height: 70px;
-        color: white;
-        margin-top: 40px;
-        background: linear-gradient(to right, red, blue, white);
-        backdrop-filter: blur(10px);
-    }
-
     >.container {
-            
-        background-color: rgba(0, 0, 0, 0.158);
-        max-width: 100%;
-        backdrop-filter: blur(10px);
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 2px solid blue;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.326);
+    
 
+        >.header {
 
-        >.info {
-
-            width: 100%;;
             display: flex;
-            flex-direction: row;
-
-                >.rule{
-
-                    margin-top: 20px;
-                    color: white;
-                    border: 1px double red;
-
-                        >h2 {
-                        padding: 20px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: red;
-                    }
-
-                    >p:nth-child(5){
-                        border-top: 2px double red ;
-                        padding-top: 10px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: red;
-
-                    }
-                    >p:nth-child(6), :nth-child(7),:nth-child(8) {
-                        color: red;
-                        overflow-wrap: break-word;
-                    }
+            align-items: center;
+            justify-content: center;
+    
+    
+            width: 100%;
+            height: 70px;
+            color: white;
+            margin-top: 40px;
+            background: linear-gradient(to right, red, blue, rgb(44, 255, 2));
+            width: auto;
+            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.002);
+            
+    
         }
+    }
+
+
+    .info {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
         
-        >.gifHeader{
+
+
+        .rule {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+
+
+            .btnOpenModal {
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                width: 50%;
+                height: 20%;
+                font-size: 30px;
+                color: black;
+                background-color: white;
+                font-family: 'Press Start 2P', cursive;
+
+                cursor: pointer;
+
+            }
+
+            /* Estilo para o modal */
+            #modal {
+
+                display: flex;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                bottom:0;
+                width: 100%;
+                overflow: auto;
+                background: hidden;
+                background-color: rgba(0, 0, 0, 0.719);
+                color: white;
+            }
+
+            /* Estilo para o conteúdo do modal */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                border-radius: 7px;
+                border: 2px solid red;
+                padding-left: 50px;
+                background-image: url('./img/backModal.png');
+                line-height: 1.2;
+                scale: 0.8;
+
+
+            
+                >h2:nth-child(2) {
+                    color: red;
+                    text-align: center;
+                    font-size: 35px;
+                    margin: 50px;
+                }
+            
+                >p:nth-child(3),:nth-child(4) {
+                    padding: 6px;
+                    color: #39ff14;
+                    
+                }
+
+                p:nth-child(5), p:nth-child(6) {
+                    margin-left: 50px;
+                    color: #ff7000; /* Define a cor do texto */
+                    padding: 5px; /* Adiciona um espaçamento interno para destacar o texto */
+                    text-shadow: 5px 4px 1px rgb(7, 5, 6);
+
+                    
+                }
+
+                >h2:nth-child(7){
+                    text-align: center;
+                    color: #39ff14;
+                }
+
+                >p:nth-child(8), :nth-child(9), :nth-child(10){
+                    color:#ff7000
+                }
+            }
+            
+
+            .close {
+                color:#39ff14;
+                ;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: red;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+
+        .containerGif{
+
+        display: flex;
+        justify-content: center;
+        
+        >.gifHeader {
 
             display: flex;
             width: 100%;
-            background-color: red;
-
             /* margin-top: 20px; */
             justify-content: center;
             align-items: end;
@@ -98,16 +184,17 @@ body {
             margin-left: 10px;
             overflow: hidden;
             border-radius: 50%;
-            margin-left: 150px ;
 
-            > &:nth-child() {
+
+            >&:nth-child() {
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
         }
-    } 
+    }
 }
+    
 
     .playersList {
 
@@ -119,11 +206,10 @@ body {
         justify-content: center;
         width: 100%;
         height: 100%;
-        gap: 65px;
-        
+        gap: 65px;      
 
-        
-        >.card-container  {
+
+        >.card-container {
 
             display: flex;
             flex-direction: column;
@@ -135,7 +221,7 @@ body {
             margin-left: 20px;
             margin-bottom: 30px;
 
-            > img {
+            >img {
 
                 max-height: 200px;
                 max-width: 245px;
@@ -152,25 +238,29 @@ body {
             >.player-luigi {
                 scale: 1.3 1.4;
             }
-            >.player-yoshi{
+
+            >.player-yoshi {
                 scale: 1.3;
             }
-            >.player-donkeykong{
+
+            >.player-donkeykong {
                 scale: 1.3;
             }
-            >.player-bowser{
+
+            >.player-bowser {
                 scale: 1.3;
             }
-            >.player-peach{
+
+            >.player-peach {
                 scale: 1.3 1.4;
             }
+
             >.player-toad {
                 scale: 1.1 1.3;
             }
-            >div {
-                
-                background: rgba(0, 0, 0, 0.363);
-                backdrop-filter: blur(20px);
+
+            >.player-info {
+
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
@@ -179,30 +269,31 @@ body {
                 border-radius: 8px;
                 margin-top: 10px;
             }
+        }
+    }
 
-            >button {
-                background-image: url('./img/selectButton.png');
+    @keyframes animationCard {
+        from {
+            margin: 3px;
 
-                border-radius: 7px;
-                display: flex;
-                width: 100%;
-                margin-top: 10px;
-                padding: 3px;
-                align-items: center;
-                justify-content: center;
+        }
 
-                cursor: pointer;
-            }
+        to {
+            margin: 0px;
         }
     }
 }
 
-@keyframes animationCard {
-    from{
-        margin: 3px;
+@keyframes moveRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100px); 
+    }
+}
 
-    }   
-    to {
-        margin: 0px;
-    } 
+.moving-image {
+    position: relative;
+    animation: moveRight 2s infinite alternate; 
 }
