@@ -55,40 +55,51 @@ body {
 
 
     .info {
+
         margin-top: 50px;
         display: flex;
         justify-content: center;
-        width: 100%;
-        padding: 20px;
-        
+        flex-direction: row;
+        width: 100%;        
 
 
         .rule {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: row;
             width: 50%;
-
+            
 
             .btnOpenModal {
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: row;
-                width: 50%;
+                width: 60%;
                 height: 20%;
-                font-size: 30px;
-                color: black;
-                background-color: white;
+                padding: 50px;
+
+                border: 10px double #888;
+                border-radius: 7px;
                 font-family: 'Press Start 2P', cursive;
+                color: #FFD700; 
+                text-shadow: #00eaff 6px 3px 1px; 
+                scale: 1.4;  
 
+
+                background-image: url('./img/blockImage.png');
+
+                background-repeat: repeat;
+                background-size: 20px;
+                position: relative;                
                 cursor: pointer;
-
+                animation: bounce 7s infinite ; 
             }
 
             /* Estilo para o modal */
             #modal {
+
 
                 display: flex;
                 position: fixed;
@@ -97,65 +108,102 @@ body {
                 top: 0;
                 bottom:0;
                 width: 100%;
+                height: 100%;
                 overflow: auto;
                 background: hidden;
                 background-color: rgba(0, 0, 0, 0.719);
                 color: white;
+
             }
 
             /* Estilo para o conteúdo do modal */
             .modal-content {
+                
                 background-color: #fefefe;
                 margin: 15% auto;
                 padding: 20px;
-                border: 1px solid #888;
+                border: 10px double #888;
                 border-radius: 7px;
-                border: 2px solid red;
+                border: 20px double #CCCCCC;
                 padding-left: 50px;
-                background-image: url('./img/backModal.png');
-                line-height: 1.2;
+                background-image: url('./img/blockImage.png');
+
+                background-repeat: repeat;
+                background-size: 100px;
+                line-height: 1.1;
                 scale: 0.8;
+                text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.835);
+                box-shadow:#F5F5DC 3px 0px 180px 10px;
+                font-weight: 600;
+
 
 
             
                 >h2:nth-child(2) {
-                    color: red;
+                    color: gold;
                     text-align: center;
                     font-size: 35px;
                     margin: 50px;
+                    text-shadow: 3px 3px 2px #000000fc, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #F5F5DC;
+                }
+                >p{
+                    padding: 5px;
+                    font-size: 20px;
+                    line-height: 1.1;
                 }
             
                 >p:nth-child(3),:nth-child(4) {
                     padding: 6px;
-                    color: #39ff14;
-                    
+                    color: #39ff14;                    
                 }
 
                 p:nth-child(5), p:nth-child(6) {
                     margin-left: 50px;
-                    color: #ff7000; /* Define a cor do texto */
-                    padding: 5px; /* Adiciona um espaçamento interno para destacar o texto */
-                    text-shadow: 5px 4px 1px rgb(7, 5, 6);
-
-                    
+                    color: #ff7000; 
+                
                 }
 
                 >h2:nth-child(7){
                     text-align: center;
-                    color: #39ff14;
+                    color: gold;
+                    margin-top: 50px;
+                    margin-bottom: 50px;
                 }
 
                 >p:nth-child(8), :nth-child(9), :nth-child(10){
-                    color:#ff7000
+
+                    color:#00eaff;
+                    text-align: center;
+                    line-height: 1.1;
+                }
+
+                >h2:nth-child(11){
+                    margin-top: 50px;
+                    text-align: center;
+                    color: gold;
+                    padding-bottom: 30px;
+
+                }
+
+                >p:nth-child(12){
+                    color: #39ff14;
+
+                    
+                }
+
+                >p:nth-child(13), :nth-child(14),:nth-child(15), :nth-child(16){
+                    margin-top: 20px;
+                    margin-left: 40px;
+                    color:#ff7000;
+                    
                 }
             }
             
 
             .close {
                 color:#39ff14;
-                ;
                 float: right;
-                font-size: 28px;
+                font-size: 38px;
                 font-weight: bold;
             }
 
@@ -271,7 +319,7 @@ body {
             }
         }
     }
-
+}
     @keyframes animationCard {
         from {
             margin: 3px;
@@ -280,20 +328,31 @@ body {
 
         to {
             margin: 0px;
-        }
-    }
+        }   
 }
 
-@keyframes moveRight {
-    0% {
-        transform: translateX(0);
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        font-size: 45px;
     }
-    100% {
-        transform: translateX(100px); 
+    40% {
+        font-size: 40px;
+        border-radius: 3px 0 20% 1px;
+        box-shadow: #CCCCCC 2px 0px 10px 10px;
+        text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #F5F5DC;
+        color: #FFD700;
     }
-}
-
-.moving-image {
-    position: relative;
-    animation: moveRight 2s infinite alternate; 
+    60% {
+        font-size: 40px;
+        border-radius: 7px 0 30% 1px;
+        box-shadow:#F5F5DC 3px 0px 30px 10px;
+        color: #FFD700;
+        text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #00eaff;
+    }
+    80% {
+        font-size: 45px;
+        color: #FFD700;
+        box-shadow:#C0C0C0 3px 0px 40px 10px;
+        text-shadow: 3px 3px 2px #000, 0 0 5px #05e5b4, 0 0 10px #05e5b4, 0 0 20px #05e5b4;
+    }
 }

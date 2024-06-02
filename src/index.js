@@ -39,7 +39,7 @@ function start() {
                 <span class="close">&times;</span>
                 <h2> 🏁 REGRAS DA CORRIDA 🏁 </h2>
                 <p> > Selecione 2 corredores para iniciar a corrida</p>
-                <p> > Sorte está do seu lado? </p>
+                <p> > A sorte está ao seu lado? </p>
                     <p> Sim, é um jogo de pura sorte. Um dado será lançado com 6 faces.</p>
                     <p> O valor do dado será somado ao atributo pessoal do corredor.</p>
                 
@@ -47,13 +47,12 @@ function start() {
                 <p>> VELOCIDADE</p>
                 <p>> MANOBRABILIDADE</p>
                 <p>> CONFRONTO</p>
-                <p> O vencedor será determinado pela soma do atributo pessoal do corredor com o resultado do dado.</p>
                 
                 <h2> SISTEMA DE PONTUAÇÃO </h2>
-                <p> Cada rodada terá um vencedor com base na pontuação mais alta.</p>
+                <p> > Cada rodada terá um vencedor com base na pontuação mais alta.</p>
                 <p> O vencedor de cada rodada ganha 1 ponto.</p>
-                <p> Se um jogador perdedor não tiver nenhum ponto, não perde pontos. </p>
-                <p> Se um jogador tiver 1 ponto e perder uma rodada, ele perde aquele ponto.</p>
+                <p> Se um corredor perder a rodada, e não tiver nenhum ponto, não será retirado pontos dele. </p>
+                <p> Se um corredor tiver 1 ponto e perder uma rodada, ele perde aquele ponto.</p>
                 <p> Após 5 rodadas, a soma dos pontos determina o vencedor geral.</p>
                 
 
