@@ -8,7 +8,7 @@ function start() {
         </header>
         </div>`
 
-        document.querySelector(".header").insertAdjacentHTML('afterbegin', headerTeamplate);
+    document.querySelector(".header").insertAdjacentHTML('afterbegin', headerTeamplate);
 
     const players = playersList;
 
@@ -61,7 +61,7 @@ function start() {
     document.querySelector(".rule").insertAdjacentHTML('afterbegin', howToPlayButton);
 
     // Adiciona o evento de clique para abrir o modal apenas ao botão específico
-    document.querySelector('.btnOpenModal').addEventListener('click', function(event) {
+    document.querySelector('.btnOpenModal').addEventListener('click', function (event) {
         event.preventDefault(); // Impede o comportamento padrão do botão (submit, etc.)
         const modal = document.getElementById('modal');
         modal.style.display = 'block';
@@ -70,14 +70,14 @@ function start() {
 
     // Adiciona o evento de clique para fechar o modal
     const spanFechar = document.querySelector('.close');
-    spanFechar.addEventListener('click', function() {
+    spanFechar.addEventListener('click', function () {
         const modal = document.getElementById('modal');
         modal.style.display = 'none';
         header.classList.remove('hidden');
     });
 
     // Fecha o modal ao clicar fora dele
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
         const modal = document.getElementById('modal');
         if (event.target == modal) {
             modal.style.display = 'none';
@@ -90,14 +90,19 @@ document.addEventListener('DOMContentLoaded', function () {
     start();
 
     const selectedCards = [];
+    let racerTwo;
+    let racerOne;
+
     const cards = document.querySelectorAll('.card-container');
 
     cards.forEach(card => {
         card.addEventListener('mouseover', function () {
+
             if (!selectedCards.includes(card)) {
                 card.style.borderImage = 'linear-gradient(to right, #39ff14, #ff073a, #00ffff, #ff4500, #ffa500) 1';
                 card.style.scale = '1.1';
                 card.style.borderRadius = '10px';
+                card.classList.add('selected');
             }
         });
 
@@ -133,7 +138,52 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.borderImage = 'linear-gradient(to right, #39ff14, #ff073a, #00ffff, #ff4500, #ffa500) 1';
                 card.style.scale = '1.2';
                 card.style.borderRadius = '10px';
+
+                racerOne = selectedCards[0].querySelector('.player-name').textContent.split(': ')[1]
+                racerTwo = selectedCards[1].querySelector('.player-name').textContent.split(': ')[1]
+                
+                selectPlayerToRace(racerOne, racerTwo)
             }
         });
     });
-});
+});function selectPlayerToRace(racerOne, racerTwo) {
+    let existPlayer1 = '';
+    let existPlayer2 = '';
+
+    for (const player of playersList) {
+        if (player.NOME === racerOne) {
+            existPlayer1 = player;
+        }
+        if (player.NOME === racerTwo) {
+            existPlayer2 = player;
+        }
+    }
+
+    if (existPlayer1 && existPlayer2) {
+        const modalStartRace = `
+            <div class="playContainer" id="playModal">
+                <div class="play-modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Corrida entre ${racerOne} e ${racerTwo}</h2>
+                    <p>testando modal</p>
+                </div>
+            </div>`;
+
+        document.querySelector(".rule").insertAdjacentHTML('afterbegin', modalStartRace);
+
+        const modal = document.getElementById('playModal');
+        const spanClose = document.querySelector('.close');
+
+        spanClose.addEventListener('click', function () {
+            modal.style.display = 'none';
+            modal.remove();
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                modal.remove();
+            }
+        });
+    }
+}
