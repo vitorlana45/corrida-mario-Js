@@ -139,33 +139,103 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.scale = '1.2';
                 card.style.borderRadius = '10px';
 
-                racerOne = selectedCards[0].querySelector('.player-name').textContent.split(': ')[1]
-                racerTwo = selectedCards[1].querySelector('.player-name').textContent.split(': ')[1]
+                let racerOne = selectedCards[0].querySelector('.player-name').textContent.split(': ')[1]
+                console.log("racerOne aqui e: ", racerOne)
+                let racerTwo = selectedCards[1].querySelector('.player-name').textContent.split(': ')[1]
+                console.log("racerTwo aqui e: ", racerTwo)
+
+                let findedRacerOne = playersList.find(player => player.NOME === racerOne);
+                let findedRacerTwo = playersList.find(player => player.NOME === racerTwo);
                 
-                selectPlayerToRace(racerOne, racerTwo)
+                playRaceEngine(findedRacerOne, findedRacerTwo)
             }
         });
     });
-});function selectPlayerToRace(racerOne, racerTwo) {
-    let existPlayer1 = '';
-    let existPlayer2 = '';
+});
+async function playRaceEngine(racerOne, racerTwo) {
 
-    for (const player of playersList) {
-        if (player.NOME === racerOne) {
-            existPlayer1 = player;
+    let racerOneObject = racerOne;
+    let racerTwoObject = racerTwo;
+
+    if (racerOneObject && racerTwoObject) {
+        let roundsResults = "";
+        let racerRoundWon;
+
+        for (let round = 1; round <= 5; round++) {
+            let battleRound = `🏁 Rodada ${round}`;
+
+            let block = await getRandomBlock();
+
+            let diceResult1 = await rollDice();
+            let diceResult2 = await rollDice();
+
+            let totalTestSkill1 = 0;
+            let totalTestSkill2 = 0;
+            let logResult1 = "";
+            let logResult2 = "";
+            let winnerRound = "";
+
+
+            if (block.match( "RETA")) {
+                totalTestSkill1 = diceResult1 + racerOneObject.VELOCIDADE;
+                totalTestSkill2 = diceResult2 + racerTwoObject.VELOCIDADE;
+
+                logResult1 =  `${racerOneObject.NOME} 🎲 rolou o dado de Velocidade  ${diceResult1}, ${racerOneObject.VELOCIDADE} = ${racerOneObject.VELOCIDADE + diceResult1}`;
+                logResult2 =  `${racerTwoObject.NOME} 🎲 rolou o dado de Velocidade: ${diceResult2}, ${racerTwoObject.VELOCIDADE} = ${racerTwoObject.VELOCIDADE + diceResult2}`;
+
+            } else if (block == "CURVA") {
+
+                totalTestSkill1 = diceResult1 + racerOneObject.MANOBRABILIDADE;
+                totalTestSkill2 = diceResult2 + racerTwoObject.MANOBRABILIDADE;
+
+                logResult1 =  `${racerOneObject.NOME} 🎲 rolou o dado de Manobrabilidade: ${diceResult1}, ${racerOneObject.MANOBRABILIDADE} = ${racerOneObject.MANOBRABILIDADE + diceResult1}`;
+                logResult2 =  `${racerTwoObject.NOME} 🎲 rolou o dado de Manobrabilidade: ${diceResult2}, ${racerTwoObject.MANOBRABILIDADE} = ${racerTwoObject.MANOBRABILIDADE + diceResult2}`;
+
+            } else if (block === "CONFRONTO") {
+
+                let powerResult1 = diceResult1 + racerOneObject.PODER;
+                let powerResult2 = diceResult2 + racerTwoObject.PODER;
+
+                
+                logResult1 =  `${racerOneObject.NOME} 🎲 rolou o dado de Poder: ${diceResult1}, ${racerOneObject.PODER} = ${racerOneObject.PODER + diceResult1}`;
+                logResult2 =  `${racerTwoObject.NOME} 🎲 rolou o dado de Poder: ${diceResult2}, ${racerTwoObject.PODER} = ${racerTwoObject.PODER + diceResult2}`;
+
+
+                if (powerResult1 > powerResult2 && racerTwoObject.PONTOS > 0) {
+                    racerTwoObject.PONTOS--;
+                } else if (powerResult2 > powerResult1 && racerOneObject.PONTOS > 0) {
+                    racerOneObject.PONTOS--;
+                }
+
+                if(powerResult1 === powerResult2) {
+                    logResult1 = "Confronto empatado!"
+                }
         }
-        if (player.NOME === racerTwo) {
-            existPlayer2 = player;
+        if (totalTestSkill1 > totalTestSkill2) {
+            winnerRound = `${racerOneObject.NOME} marcou um ponto!`
+            racerOneObject.PONTOS++;
+            console.log(winnerRound)
+        } else if (totalTestSkill2 > totalTestSkill1) {
+            winnerRound = `${racerTwoObject.NOME} marcou um ponto!`
+            racerTwoObject.PONTOS++;
+            console.log("here", winnerRound)
+
         }
+
+        roundsResults += `
+        <h2>${battleRound}</h2>
+        <p>${logResult1}</p>
+        <p>${logResult2}</p>
+        <p>${winnerRound}</p>
+    `;
     }
 
-    if (existPlayer1 && existPlayer2) {
         const modalStartRace = `
             <div class="playContainer" id="playModal">
                 <div class="play-modal-content">
                     <span class="close">&times;</span>
-                    <h2>Corrida entre ${racerOne} e ${racerTwo}</h2>
-                    <p>testando modal</p>
+                    <h2>Corrida entre ${racerOne.NOME} e ${racerTwo.NOME}</h2>
+                    ${roundsResults}
                 </div>
             </div>`;
 
@@ -185,5 +255,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 modal.remove();
             }
         });
+    } else {
+        console.error('Não foi possível obter os nomes dos corredores.');
     }
 }
+
+async function getRandomBlock() {
+    let random = Math.random();
+    let result;
+
+    switch (true) {
+        case random < 0.33:
+            result = "RETA";
+            break;
+        case random < 0.66:
+            result = "CURVA";
+            break;
+        default:
+            result = "CONFRONTO";
+            break;
+    }
+    return result;
+}
+
+async function rollDice() {
+    // Simulação de rolagem de dado
+    return Math.floor(Math.random() * 6) + 1;
+}
+
