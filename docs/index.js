@@ -244,9 +244,9 @@ async function playRaceEngine(racerOne, racerTwo) {
                 <span class="close">&times;</span>
                 <h2>Corrida entre ${racerOne.NOME} e ${racerTwo.NOME}</h2>
                     <div class ="modal-image">
-                        <img src="${racerOneImage}" alt="">
+                        <img src="${racerOneImage.toLowerCase().replace(" ", "")}" alt="">
                         <h1 class="vs">VS</h1>
-                        <img src="${racerTwoImage}" alt="">
+                        <img src="${racerTwoImage.toLowerCase().replace(" ", "")}" alt="">
                     </div>
                 <div class="modal-content-results">
                     <h2>${battleRound}</h2>
