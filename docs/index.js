@@ -157,10 +157,13 @@ async function playRaceEngine(racerOne, racerTwo) {
     let racerOneObject = racerOne;
     let racerTwoObject = racerTwo;
 
+    let historyRoundsbattle = "";
+    
+
     if (racerOneObject && racerTwoObject) {
-        let roundsResults = "";
         let racerRoundWon;
 
+        let continueNextRound = true;
         for (let round = 1; round <= 5; round++) {
             let battleRound = `🏁 Rodada ${round}`;
 
@@ -169,11 +172,13 @@ async function playRaceEngine(racerOne, racerTwo) {
             let diceResult1 = await rollDice();
             let diceResult2 = await rollDice();
 
-            let totalTestSkill1 = 0;
-            let totalTestSkill2 = 0;
+
+            let totalTestSkill1 = isNaN;
+            let totalTestSkill2 = isNaN;
             let logResult1 = "";
             let logResult2 = "";
             let winnerRound = "";
+            let tiedRound ;
 
 
             if (block.match( "RETA")) {
@@ -182,8 +187,8 @@ async function playRaceEngine(racerOne, racerTwo) {
 
                 logResult1 =  `${racerOneObject.NOME} 🎲 rolou o dado de Velocidade  ${diceResult1}, ${racerOneObject.VELOCIDADE} = ${racerOneObject.VELOCIDADE + diceResult1}`;
                 logResult2 =  `${racerTwoObject.NOME} 🎲 rolou o dado de Velocidade: ${diceResult2}, ${racerTwoObject.VELOCIDADE} = ${racerTwoObject.VELOCIDADE + diceResult2}`;
-
-            } else if (block == "CURVA") {
+            }
+            if (block.match("CURVA")) {
 
                 totalTestSkill1 = diceResult1 + racerOneObject.MANOBRABILIDADE;
                 totalTestSkill2 = diceResult2 + racerTwoObject.MANOBRABILIDADE;
@@ -191,7 +196,19 @@ async function playRaceEngine(racerOne, racerTwo) {
                 logResult1 =  `${racerOneObject.NOME} 🎲 rolou o dado de Manobrabilidade: ${diceResult1}, ${racerOneObject.MANOBRABILIDADE} = ${racerOneObject.MANOBRABILIDADE + diceResult1}`;
                 logResult2 =  `${racerTwoObject.NOME} 🎲 rolou o dado de Manobrabilidade: ${diceResult2}, ${racerTwoObject.MANOBRABILIDADE} = ${racerTwoObject.MANOBRABILIDADE + diceResult2}`;
 
-            } else if (block === "CONFRONTO") {
+            }
+
+            if (totalTestSkill1 > totalTestSkill2) {
+                winnerRound = `${racerOneObject.NOME} marcou um ponto!`
+                racerOneObject.PONTOS++;
+            }
+            else if (totalTestSkill2 > totalTestSkill1) {
+                winnerRound = `${racerTwoObject.NOME} marcou um ponto!`
+                racerTwoObject.PONTOS++;
+            }if ( totalTestSkill1 === totalTestSkill2){
+                winnerRound = `empate na rodada!`;
+            }
+            if (block.match("CONFRONTO")) {
 
                 let powerResult1 = diceResult1 + racerOneObject.PODER;
                 let powerResult2 = diceResult2 + racerTwoObject.PODER;
@@ -203,62 +220,74 @@ async function playRaceEngine(racerOne, racerTwo) {
 
                 if (powerResult1 > powerResult2 && racerTwoObject.PONTOS > 0) {
                     racerTwoObject.PONTOS--;
-                } else if (powerResult2 > powerResult1 && racerOneObject.PONTOS > 0) {
+                    console.log("racer 2 com pontos");
+                    winnerRound = `${racerOneObject.NOME} vencceu o confronto ${racerTwoObject.NOME} perdeu um ponto!`
+
+                } 
+                else if (powerResult2 > powerResult1 && racerOneObject.PONTOS > 0) {
                     racerOneObject.PONTOS--;
+                    winnerRound = `${racerTwoObject.NOME} vencceu o confronto ${racerOneObject.NOME} perdeu um ponto!`
+                    console.log("racer 1 com pontos");
+                }else if(powerResult1 === powerResult2){
+                    winnerRound = `Confronto empatado!`;
                 }
 
-                if(powerResult1 === powerResult2) {
-                    logResult1 = "Confronto empatado!"
-                }
-        }
-        if (totalTestSkill1 > totalTestSkill2) {
-            winnerRound = `${racerOneObject.NOME} marcou um ponto!`
-            racerOneObject.PONTOS++;
-            console.log(winnerRound)
-        } else if (totalTestSkill2 > totalTestSkill1) {
-            winnerRound = `${racerTwoObject.NOME} marcou um ponto!`
-            racerTwoObject.PONTOS++;
-            console.log("here", winnerRound)
+            }
 
-        }
+        let racerOneImage = "./img/" + racerOneObject.NOME.toLowerCase() + ".gif";
+        let racerTwoImage ="./img/" + racerTwoObject.NOME.toLowerCase() + ".gif";
 
-        roundsResults += `
-        <h2>${battleRound}</h2>
-        <p>${logResult1}</p>
-        <p>${logResult2}</p>
-        <p>${winnerRound}</p>
-    `;
-    }
 
         const modalStartRace = `
-            <div class="playContainer" id="playModal">
-                <div class="play-modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Corrida entre ${racerOne.NOME} e ${racerTwo.NOME}</h2>
-                    ${roundsResults}
+        <div class="playContainer" id="playModal">
+            <div class="play-modal-content">
+                <span class="close">&times;</span>
+                <h2>Corrida entre ${racerOne.NOME} e ${racerTwo.NOME}</h2>
+                    <div class ="modal-image">
+                        <img src="${racerOneImage}" alt="">
+                        <h1 class="vs">VS</h1>
+                        <img src="${racerTwoImage}" alt="">
+                    </div>
+                <div class="modal-content-results">
+                    <h2>${battleRound}</h2>
+                    <p>${logResult1}</p>
+                    <p>${logResult2}</p>
+                    <p>${winnerRound}</p>
                 </div>
-            </div>`;
+                <button class="nextRound" id="nextRound"> Próxima Rodada</button>
+            </div>
+        </div>`;
 
-        document.querySelector(".rule").insertAdjacentHTML('afterbegin', modalStartRace);
+    document.querySelector(".rule").insertAdjacentHTML('afterbegin', modalStartRace);
 
-        const modal = document.getElementById('playModal');
-        const spanClose = document.querySelector('.close');
+    const modal = document.getElementById('playModal');
+    const spanClose = document.querySelector('.close');
+    const nextRound = document.getElementById('nextRound');
 
-        spanClose.addEventListener('click', function () {
-            modal.style.display = 'none';
-            modal.remove();
-        });
 
-        window.addEventListener('click', function (event) {
-            if (event.target == modal) {
+    spanClose.addEventListener('click', function (event) {
+        if (event.target == spanClose) {
+            const modals = document.querySelectorAll('.playContainer');
+            modals.forEach(modal => {
                 modal.style.display = 'none';
-                modal.remove();
-            }
-        });
+                modal.remove(); 
+            });
+        }
+    });
+    
+    window.addEventListener('click', function (event) {
+        // Verifica se o clique foi fora do modal
+        if (event.target == nextRound) {
+                modal.style.display = 'none';
+                modal.remove(); 
+        }
+    });
+}
     } else {
         console.error('Não foi possível obter os nomes dos corredores.');
     }
 }
+
 
 async function getRandomBlock() {
     let random = Math.random();
