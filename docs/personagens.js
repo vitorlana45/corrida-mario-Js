@@ -1,6 +1,5 @@
 export const playersList = [
     {
-        
         NOME: "Mario",
         VELOCIDADE: 4,
         MANOBRABILIDADE: 3,
@@ -9,7 +8,9 @@ export const playersList = [
         COLOR: [
             "red",
             "blue"
-        ]
+        ],
+        fontColor: "red",
+        shadowBorder: "red"
     },
     {
         NOME: "Luigi",
@@ -20,7 +21,9 @@ export const playersList = [
         COLOR: [
             "#00fe00",
             "blue"
-        ]
+        ],
+        fontColor: "#00fe00",
+        shadowBorder: "#00fe00"
     },
     {
         NOME: "Peach",
@@ -30,8 +33,10 @@ export const playersList = [
         PONTOS: 0,
         COLOR: [
             "#FF1493",
-            "yellow",
-            ]
+            "yellow"
+        ],
+        fontColor: "#FF1493",
+        shadowBorder: "#FF1493"
     },
     {
         NOME: "Yoshi",
@@ -43,7 +48,9 @@ export const playersList = [
             "#00fe00",
             "white",
             "red"
-        ]
+        ],
+        fontColor: "#00fe00",
+        shadowBorder: "#00fe00"
     },
     {
         NOME: "Donkey Kong",
@@ -54,7 +61,9 @@ export const playersList = [
         COLOR: [
             "#b71422",
             "#f0f1ec"
-        ]
+        ],
+        fontColor: "#b71422",
+        shadowBorder: "#b71422"
     },
     {
         NOME: "Bowser",
@@ -66,9 +75,10 @@ export const playersList = [
             "red",
             "green",
             "yellow"
-        ]
+        ],
+        fontColor: "gold",
+        shadowBorder: "gold"
     },
-
     {
         NOME: "Toad",
         VELOCIDADE: 3,
@@ -79,6 +89,8 @@ export const playersList = [
             "red",
             "white",
             "blue"
-        ]
+        ],
+        fontColor: "#fffafa",
+        shadowBorder: "#fffafa"
     }
 ];
