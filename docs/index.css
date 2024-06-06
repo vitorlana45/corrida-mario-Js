@@ -363,6 +363,7 @@ body {
     align-items: center;
     justify-content: center;
     border: double rgb(255, 255, 255) 23px;
+    scale: 0.9;
 
 
     h2 {
