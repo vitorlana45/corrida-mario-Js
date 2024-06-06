@@ -78,7 +78,7 @@ body {
                 height: 20%;
                 padding: 50px;
 
-                border: 10px double #888;
+                border: 10px double #fffcfc;
                 border-radius: 7px;
                 font-family: 'Press Start 2P', cursive;
                 color: #FFD700; 
@@ -107,7 +107,7 @@ body {
                 height: 100%;
                 overflow: auto;
                 background: hidden;
-                background-color: rgba(0, 0, 0, 0.719);
+                background-color: rgb(0, 0, 0);
                 color: white;
 
             }
@@ -127,10 +127,11 @@ body {
                 background-repeat: repeat;
                 background-size: 100px;
                 line-height: 1.1;
-                scale: 0.8;
-                text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.835);
+                scale: 0.7;
+                text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.842);
                 box-shadow:#F5F5DC 3px 0px 180px 10px;
                 font-weight: 600;
+
 
             
                 >h2:nth-child(2) {
@@ -464,7 +465,6 @@ body {
                 color: white;
                 font-size: 18px;
             }
-        
         }
 
 
@@ -486,13 +486,11 @@ body {
     }
     40% {
         font-size: 40px;
-        border-radius: 3px 0 20% 1px;
         text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #F5F5DC;
         color: #FFD700;
     }
     60% {
         font-size: 40px;
-        border-radius: 7px 0 30% 1px;
         color: #FFD700;
         text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #00eaff;
     }
