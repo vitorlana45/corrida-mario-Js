@@ -190,8 +190,8 @@ async function playRaceEngine(racerOne, racerTwo) {
                 totalTestSkill1 = diceResult1 + racerOneObject.VELOCIDADE;
                 totalTestSkill2 = diceResult2 + racerTwoObject.VELOCIDADE;
 
-                logResult1 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorVelocity}">${racerOneObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.VELOCIDADE + diceResult1}</span>`;
-                logResult2 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorVelocity}">${racerTwoObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.VELOCIDADE + diceResult2}</span>`;
+                logResult1 =  `: rolou o dado de Velocidade:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorVelocity}">${racerOneObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.VELOCIDADE + diceResult1}</span>`;
+                logResult2 =  `: rolou o dado de Velocidade:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorVelocity}">${racerTwoObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.VELOCIDADE + diceResult2}</span>`;
 
             }
             if (block.match("CURVA")) {
@@ -324,6 +324,7 @@ async function getRandomBlock() {
     switch (true) {
         case random < 0.33:
             result = "RETA";
+            console.log("deu reta dentro")
             break;
         case random < 0.66:
             result = "CURVA";
