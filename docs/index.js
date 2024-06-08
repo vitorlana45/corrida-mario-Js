@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let findedRacerOne = playersList.find(player => player.NOME === racerOne);
                 let findedRacerTwo = playersList.find(player => player.NOME === racerTwo);
                 
-                playRaceEngine(findedRacerOne, findedRacerTwo, playersList)
+                playRaceEngine(findedRacerOne, findedRacerTwo)
             }
         });
     });
@@ -160,10 +160,14 @@ async function playRaceEngine(racerOne, racerTwo) {
     
 
     if (racerOneObject && racerTwoObject) {
-        let racerRoundWon;
 
-        let continueNextRound = true;
         for (let round = 1; round <= 5; round++) {
+
+            if(round === 1){
+                racerOneObject.PONTOS = 0;
+                racerTwoObject.PONTOS = 0;
+            }
+
             let battleRound = `🏁 Rodada ${round}`;
 
             let block = await getRandomBlock();
@@ -240,6 +244,7 @@ async function playRaceEngine(racerOne, racerTwo) {
                     winnerRound = `<span style="color: ${colorSumPoints}">Confronto empatado!`;
                 }
 
+
             }
             
         let racerOneImage = "./img/" + racerOneObject.NOME.toLowerCase() + ".gif";
@@ -284,14 +289,10 @@ async function playRaceEngine(racerOne, racerTwo) {
             </div>`;
         
         document.querySelector(".rule").insertAdjacentHTML('afterbegin', modalStartRace);
-        
-
-    
 
     const modal = document.getElementById('playModal');
     const spanClose = document.querySelector('.close');
     const nextRound = document.getElementById('nextRound');
-
 
     spanClose.addEventListener('click', function (event) {
         if (event.target == spanClose) {
@@ -304,7 +305,6 @@ async function playRaceEngine(racerOne, racerTwo) {
     });
     
     window.addEventListener('click', function (event) {
-        // Verifica se o clique foi fora do modal
         if (event.target == nextRound) {
                 modal.style.display = 'none';
                 modal.remove(); 
