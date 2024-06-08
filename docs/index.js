@@ -177,35 +177,42 @@ async function playRaceEngine(racerOne, racerTwo) {
             let logResult1 = "";
             let logResult2 = "";
             let winnerRound = "";
-            let tiedRound ;
+
+            let colorVelocity = "gold"
+            let colormaneuverability = "cyan"
+            let colorPower = "red"
+            let colorDice = "#B026FF"
+            let colorSumPoints = "#39FF14"
 
 
             if (block.match( "RETA")) {
+
                 totalTestSkill1 = diceResult1 + racerOneObject.VELOCIDADE;
                 totalTestSkill2 = diceResult2 + racerTwoObject.VELOCIDADE;
 
-                logResult1 =  `${racerOneObject.NOME}: rolou o dado de Velocidade = 🎲 ${diceResult1}, Racer ${racerOneObject.VELOCIDADE} = ${racerOneObject.VELOCIDADE + diceResult1}`;
-                logResult2 =  `${racerTwoObject.NOME}: rolou o dado de Velocidade = 🎲 ${diceResult2}, Racer ${racerTwoObject.VELOCIDADE} = ${racerTwoObject.VELOCIDADE + diceResult2}`;
+                logResult1 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorVelocity}">${racerOneObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.VELOCIDADE + diceResult1}</span>`;
+                logResult2 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorVelocity}">${racerTwoObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.VELOCIDADE + diceResult2}</span>`;
+
             }
             if (block.match("CURVA")) {
 
                 totalTestSkill1 = diceResult1 + racerOneObject.MANOBRABILIDADE;
                 totalTestSkill2 = diceResult2 + racerTwoObject.MANOBRABILIDADE;
 
-                logResult1 =  `${racerOneObject.NOME}: rolou o dado de Manobrabilidad = 🎲 ${diceResult1}, Racer ${racerOneObject.MANOBRABILIDADE}  = ${racerOneObject.MANOBRABILIDADE + diceResult1}`;
-                logResult2 =  `${racerTwoObject.NOME}: rolou o dado de Manobrabilidade = 🎲 ${diceResult2}, Racer ${racerTwoObject.MANOBRABILIDADE} = ${racerTwoObject.MANOBRABILIDADE + diceResult2}`;
+                logResult1 =  `: rolou o dado de Manobrabilidade: 🎲 ${diceResult1}, Racer <span style="color: ${colormaneuverability}">${racerOneObject.MANOBRABILIDADE}</span>  = <span style="color: ${colorDice}">${racerOneObject.MANOBRABILIDADE + diceResult1}</span>`;
+                logResult2 =  `: rolou o dado de Manobrabilidade: 🎲 ${diceResult2}, Racer <span style="color: ${colormaneuverability}">${racerTwoObject.MANOBRABILIDADE}</span>  = <span style="color: ${colorDice}">${racerTwoObject.MANOBRABILIDADE + diceResult2}</span>`;
 
             }
 
             if (totalTestSkill1 > totalTestSkill2) {
-                winnerRound = `${racerOneObject.NOME} marcou um ponto!`
+                winnerRound = ` <span style="color: ${racerOne.fontColor}">${racerOneObject.NOME} </span>marcou um ponto!`
                 racerOneObject.PONTOS++;
             }
             else if (totalTestSkill2 > totalTestSkill1) {
-                winnerRound = `${racerTwoObject.NOME} marcou um ponto!`
+                winnerRound = ` <span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME} </span> marcou um ponto!`
                 racerTwoObject.PONTOS++;
             }if ( totalTestSkill1 === totalTestSkill2){
-                winnerRound = `empate na rodada!`;
+                winnerRound = `<span style="color: ${colorSumPoints}"> empate na rodada!`;
             }
             if (block.match("CONFRONTO")) {
 
@@ -213,56 +220,41 @@ async function playRaceEngine(racerOne, racerTwo) {
                 let powerResult2 = diceResult2 + racerTwoObject.PODER;
 
                 
-                logResult1 =  `${racerOneObject.NOME}: rolou o dado de Poder: 🎲 ${diceResult1}, Racer ${racerOneObject.PODER} = ${racerOneObject.PODER + diceResult1}`;
-                logResult2 =  `${racerTwoObject.NOME}: rolou o dado de Poder: 🎲 ${diceResult2}, Racer ${racerTwoObject.PODER} = ${racerTwoObject.PODER + diceResult2}`;
+                logResult1 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorPower}">${racerOneObject.PODER}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.PODER + diceResult1}</span>`;
+                logResult2 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorPower}">${racerTwoObject.PODER}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.PODER + diceResult2}</span>`;
+
 
 
                 if (powerResult1 > powerResult2 && racerTwoObject.PONTOS > 0) {
                     racerTwoObject.PONTOS--;
                     console.log("racer 2 com pontos");
                     winnerRound = `${racerOneObject.NOME} vencceu o confronto ${racerTwoObject.NOME} perdeu um ponto!`
+                    winnerRound = `<span style="color: ${racerOne.fontColor}">${racerOneObject.NOME}</span> venceu o confronto <span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME} </span> perdeu um ponto!`
 
                 } 
                 else if (powerResult2 > powerResult1 && racerOneObject.PONTOS > 0) {
                     racerOneObject.PONTOS--;
-                    winnerRound = `${racerTwoObject.NOME} venceu o confronto ${racerOneObject.NOME} perdeu um ponto!`
+                    winnerRound = `<span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME}</span> venceu o confronto  <span style="color: ${racerOne.fontColor}">${racerOneObject.NOME} </span> perdeu um ponto!`
                     console.log("racer 1 com pontos");
                 }else if(powerResult1 === powerResult2){
-                    winnerRound = `Confronto empatado!`;
+                    winnerRound = `<span style="color: ${colorSumPoints}">Confronto empatado!`;
                 }
 
             }
-
+            
         let racerOneImage = "./img/" + racerOneObject.NOME.toLowerCase() + ".gif";
         let racerTwoImage ="./img/" + racerTwoObject.NOME.toLowerCase() + ".gif";
 
-        console.log(racerOne.COLOR)
-
-
-        let colorsOne = racerOne.COLOR.length > 2 ?
-            `linear-gradient(to right, ${racerOne.COLOR[0]}, ${racerOne.COLOR[1]}, ${racerOne.COLOR[2]})` :
-            `linear-gradient(to right, ${racerOne.COLOR[0]}, ${racerOne.COLOR[1]})`;
-
-            let colorsTwo = racerTwo.COLOR.length > 2 ?
-            `linear-gradient(to right, ${racerTwo.COLOR[0]}, ${racerTwo.COLOR[1]}, ${racerTwo.COLOR[2]})` :
-            `linear-gradient(to right, ${racerTwo.COLOR[0]}, ${racerTwo.COLOR[1]})`;
-
-            console.log(racerOne.fontColor, racerTwo.fontColor)
-            console.log(racerOne.NOME)
-
-            let colorVelocity = "gold"
-            let colormaneuverability = "cyan"
-            let colorPower = "red"
 
             const modalStartRace = `
             <div class="playContainer" id="playModal">
                 <div class="play-modal-content">
                     <span class="close">&times;</span>
                     <div class="modal-image">
-                        <img  <img style="box-shadow: 0px 0px 20px 10px ${racerOne.shadowBorder}; border: 10px double ${racerOne.shadowBorder};" 
+                        <img style="box-shadow: 0px 0px 5px 7px ${racerOne.shadowBorder}; border: 10px double ${racerOne.shadowBorder};" 
                         src="${racerOneImage.toLowerCase().replace(" ", "")}" alt="">
                         <h1 class="vs">VS</h1>
-                        <img style="box-shadow: 0px 0px 20px 10px ${racerTwo.shadowBorder}; border: 10px double ${racerTwo.shadowBorder}" 
+                        <img style="box-shadow: 0px 0px 5px 7px ${racerTwo.shadowBorder}; border: 10px double ${racerTwo.shadowBorder}" 
                             src="${racerTwoImage.toLowerCase().replace(" ", "")}" alt="">
                     </div>
                     <div class="container-attribute">
@@ -283,8 +275,8 @@ async function playRaceEngine(racerOne, racerTwo) {
         
                     <div class="modal-content-results">
                         <h2>${battleRound}</h2>
-                        <p>${logResult1}</p>
-                        <p>${logResult2}</p>
+                        <p><span style="color: ${racerOne.fontColor}; font-family: 'Press Start 2P', cursive; text-shadow: 0px 0px 15px ${racerOne.shadowBorder};">${racerOne.NOME}</span> ${logResult1}</p>
+                        <p><span style="color: ${racerTwo.fontColor}; font-family: 'Press Start 2P', cursive; text-shadow: 0px 0px 15px ${racerTwo.shadowBorder};">${racerTwo.NOME}</span> ${logResult2}</p>
                         <p>${winnerRound}</p>
                     </div>
                     <button class="nextRound" id="nextRound"> Próxima Rodada</button>

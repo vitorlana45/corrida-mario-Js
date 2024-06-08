@@ -90,7 +90,7 @@ export const playersList = [
             "white",
             "blue"
         ],
-        fontColor: "#fffafa",
-        shadowBorder: "#fffafa"
+        fontColor: "#1E90FF",
+        shadowBorder: "#1E90FF"
     }
 ];
