@@ -528,6 +528,132 @@ body {
     color: #999; 
 }
 
+/* Estilo para o overlay do modal */
+.modal-overlay {
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(19, 23, 32, 0.918);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    backdrop-filter: blur(15px);
+
+
+
+
+    >.modal-content {
+
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.603); /* sombra */
+        width: 28%; 
+        height: 70%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        scale: 0.7;
+        overflow: hidden;
+        border: solid 10px rgb(255, 255, 255);
+        animation: pulseShadow 1s infinite;
+        padding: 0px;
+
+        >.winner-info{
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px ;
+            background-color: #00000013;
+
+
+
+        >h1 {
+            margin-bottom: 100px;
+            animation: changeColorWinnerName 2.2s infinite;
+
+            
+        }
+
+
+            >img {
+
+                width: 500px;
+                height: 450px;
+                background-color: rgba(56, 24, 24, 0.493);
+                backdrop-filter: blur(20px);
+                border-top: double  8px white;
+                border-radius: 50px;
+                box-shadow: white 0px 0px 40px;
+                scale: 1.1;
+                
+            }
+
+            >div{
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 85%;
+                margin-top: 100px;
+
+                border-radius: 7px;
+                border-top: double 8px rgb(0, 0, 0);
+                border-radius: 50px;
+                border-bottom: double 8px rgb(12, 12, 12);
+                background-color: rgba(255, 254, 254, 0.295);
+                >h2 {
+                    margin-top: 30px;
+                }
+
+                >p {
+                    margin-top: 30px;
+                    font-size: 25px;
+                    color: red;
+                    font-size: 30px;
+                }
+            }
+        }
+
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+}
+
+@keyframes shadowBoxCardWinner {
+    0%, 20%, 50%, 80%, 100% {
+    }
+    40% {
+        text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #F5F5DC;
+    }
+    60% {
+        text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #00eaff;
+    }
+    80% {
+        text-shadow: 3px 3px 2px #000, 0 0 5px #05e5b4, 0 0 10px #05e5b4, 0 0 20px #05e5b4;
+    }
+    
+}
+
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         font-size: 60px;
@@ -569,5 +695,41 @@ body {
     80% {
         color: #FFFF00;
         text-shadow: 3px 3px 2px #000, 0 0 5px #8B4513, 0 0 10px #8B4513, 0 0 20px #8B4513; 
+    }
+}
+
+@keyframes pulseShadow {
+    0%, 20%, 50%, 80%, 100% {
+        box-shadow: white 0px 0px 70px;
+    }
+    40% {
+        box-shadow: rgb(255, 255, 255) 0px 0px 40px;
+    }
+    60% {
+        box-shadow: rgb(255, 255, 255) 0px 0px 50px;
+    }
+    80% {
+        box-shadow: rgb(255, 255, 255) 0px 0px 40px;
+        }
+    
+}
+
+@keyframes changeColorWinnerName {
+
+0%, 20%, 50%, 80%, 100% {
+    font-size: 45px;
+    color: red;
+    box-shadow: white 0px 0px 0px;
+}
+40% {
+    box-shadow: rgb(255, 0, 0) 0px 0px 40px;
+    padding: 10px;
+}
+60% {
+    box-shadow: rgb(255, 255, 255) 0px 0px 50px;
+}
+80% {
+    box-shadow: rgb(255, 2, 2) 0px 0px 40px;
+    color: #00eaff;
     }
 }

@@ -1,6 +1,8 @@
 import { playersList } from './personagens.js';
 
-function start() {
+const inBattle = false;
+
+(function start() {
 
     const headerTeamplate = `<div class="header">
         <header>
@@ -83,14 +85,11 @@ function start() {
             header.classList.remove('hidden');
         }
     });
-}
+}())
 
 document.addEventListener('DOMContentLoaded', function () {
-    start();
 
     const selectedCards = [];
-    let racerTwo;
-    let racerOne;
 
     const cards = document.querySelectorAll('.card-container');
 
@@ -145,25 +144,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 let findedRacerOne = playersList.find(player => player.NOME === racerOne);
                 let findedRacerTwo = playersList.find(player => player.NOME === racerTwo);
-                
+
                 playRaceEngine(findedRacerOne, findedRacerTwo)
             }
         });
     });
 });
+
+let countButton =0;
 async function playRaceEngine(racerOne, racerTwo) {
 
     let racerOneObject = racerOne;
     let racerTwoObject = racerTwo;
 
-    let historyRoundsbattle = "";
-    
-
     if (racerOneObject && racerTwoObject) {
 
         for (let round = 1; round <= 5; round++) {
 
-            if(round === 1){
+            if (round === 1) {
                 racerOneObject.PONTOS = 0;
                 racerTwoObject.PONTOS = 0;
             }
@@ -189,13 +187,13 @@ async function playRaceEngine(racerOne, racerTwo) {
             let colorSumPoints = "#39FF14"
 
 
-            if (block.match( "RETA")) {
+            if (block.match("RETA")) {
 
                 totalTestSkill1 = diceResult1 + racerOneObject.VELOCIDADE;
                 totalTestSkill2 = diceResult2 + racerTwoObject.VELOCIDADE;
 
-                logResult1 =  `: rolou o dado de Velocidade:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorVelocity}">${racerOneObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.VELOCIDADE + diceResult1}</span>`;
-                logResult2 =  `: rolou o dado de Velocidade:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorVelocity}">${racerTwoObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.VELOCIDADE + diceResult2}</span>`;
+                logResult1 = `: rolou o dado de Velocidade:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorVelocity}">${racerOneObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.VELOCIDADE + diceResult1}</span>`;
+                logResult2 = `: rolou o dado de Velocidade:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorVelocity}">${racerTwoObject.VELOCIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.VELOCIDADE + diceResult2}</span>`;
 
             }
             if (block.match("CURVA")) {
@@ -203,9 +201,8 @@ async function playRaceEngine(racerOne, racerTwo) {
                 totalTestSkill1 = diceResult1 + racerOneObject.MANOBRABILIDADE;
                 totalTestSkill2 = diceResult2 + racerTwoObject.MANOBRABILIDADE;
 
-                logResult1 =  `: rolou o dado de Manobrabilidade: 🎲 ${diceResult1}, Racer <span style="color: ${colormaneuverability}">${racerOneObject.MANOBRABILIDADE}</span>  = <span style="color: ${colorDice}">${racerOneObject.MANOBRABILIDADE + diceResult1}</span>`;
-                logResult2 =  `: rolou o dado de Manobrabilidade: 🎲 ${diceResult2}, Racer <span style="color: ${colormaneuverability}">${racerTwoObject.MANOBRABILIDADE}</span>  = <span style="color: ${colorDice}">${racerTwoObject.MANOBRABILIDADE + diceResult2}</span>`;
-
+                logResult1 = `: rolou o dado de Manobrabilidade:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colormaneuverability}">${racerOneObject.MANOBRABILIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.MANOBRABILIDADE + diceResult1}</span>`;
+                logResult2 = `: rolou o dado de Manobrabilidade:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colormaneuverability}">${racerTwoObject.MANOBRABILIDADE}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.MANOBRABILIDADE + diceResult2}</span>`;
             }
 
             if (totalTestSkill1 > totalTestSkill2) {
@@ -215,7 +212,7 @@ async function playRaceEngine(racerOne, racerTwo) {
             else if (totalTestSkill2 > totalTestSkill1) {
                 winnerRound = ` <span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME} </span> marcou um ponto!`
                 racerTwoObject.PONTOS++;
-            }if ( totalTestSkill1 === totalTestSkill2){
+            } if (totalTestSkill1 === totalTestSkill2) {
                 winnerRound = `<span style="color: ${colorSumPoints}"> empate na rodada!`;
             }
             if (block.match("CONFRONTO")) {
@@ -223,9 +220,9 @@ async function playRaceEngine(racerOne, racerTwo) {
                 let powerResult1 = diceResult1 + racerOneObject.PODER;
                 let powerResult2 = diceResult2 + racerTwoObject.PODER;
 
-                
-                logResult1 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorPower}">${racerOneObject.PODER}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.PODER + diceResult1}</span>`;
-                logResult2 =  `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorPower}">${racerTwoObject.PODER}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.PODER + diceResult2}</span>`;
+
+                logResult1 = `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult1}</span>, Racer <span style="color: ${colorPower}">${racerOneObject.PODER}</span>  = <span style="color: ${colorSumPoints}">${racerOneObject.PODER + diceResult1}</span>`;
+                logResult2 = `: rolou o dado do Poder:<span style="color: ${colorDice}"> 🎲 ${diceResult2}</span>, Racer <span style="color: ${colorPower}">${racerTwoObject.PODER}</span>  = <span style="color: ${colorSumPoints}">${racerTwoObject.PODER + diceResult2}</span>`;
 
 
 
@@ -235,20 +232,19 @@ async function playRaceEngine(racerOne, racerTwo) {
                     winnerRound = `${racerOneObject.NOME} vencceu o confronto ${racerTwoObject.NOME} perdeu um ponto!`
                     winnerRound = `<span style="color: ${racerOne.fontColor}">${racerOneObject.NOME}</span> venceu o confronto <span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME} </span> perdeu um ponto!`
 
-                } 
+                }
                 else if (powerResult2 > powerResult1 && racerOneObject.PONTOS > 0) {
                     racerOneObject.PONTOS--;
                     winnerRound = `<span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME}</span> venceu o confronto  <span style="color: ${racerOne.fontColor}">${racerOneObject.NOME} </span> perdeu um ponto!`
                     console.log("racer 1 com pontos");
-                }else if(powerResult1 === powerResult2){
+                } else if (powerResult1 === powerResult2) {
                     winnerRound = `<span style="color: ${colorSumPoints}">Confronto empatado!`;
                 }
 
-
             }
-            
-        let racerOneImage = "./img/" + racerOneObject.NOME.toLowerCase() + ".gif";
-        let racerTwoImage ="./img/" + racerTwoObject.NOME.toLowerCase() + ".gif";
+
+            let racerOneImage = "./img/" + racerOneObject.NOME.toLowerCase() + ".gif";
+            let racerTwoImage = "./img/" + racerTwoObject.NOME.toLowerCase() + ".gif";
 
 
             const modalStartRace = `
@@ -287,34 +283,106 @@ async function playRaceEngine(racerOne, racerTwo) {
                     <button class="nextRound" id="nextRound"> Próxima Rodada</button>
                 </div>
             </div>`;
-        
-        document.querySelector(".rule").insertAdjacentHTML('afterbegin', modalStartRace);
 
-    const modal = document.getElementById('playModal');
-    const spanClose = document.querySelector('.close');
-    const nextRound = document.getElementById('nextRound');
+            document.querySelector(".rule").insertAdjacentHTML('afterbegin', modalStartRace);
 
-    spanClose.addEventListener('click', function (event) {
-        if (event.target == spanClose) {
-            const modals = document.querySelectorAll('.playContainer');
-            modals.forEach(modal => {
-                modal.style.display = 'none';
-                modal.remove(); 
+            const modal = document.getElementById('playModal');
+            const spanClose = document.querySelector('.close');
+            const nextRound = document.getElementById('nextRound');
+
+            spanClose.addEventListener('click', function (event) {
+                if (event.target == spanClose) {
+                    const modals = document.querySelectorAll('.playContainer');
+                    modals.forEach(modal => {
+                        modal.style.display = 'none';
+                        modal.remove();
+                    });
+                }
             });
+
+            window.addEventListener('click', function (event) {
+                if (event.target == nextRound) {
+                    modal.style.display = 'none';
+                    modal.remove();
+                }
+            });  
+
+
+            countButton++;
         }
-    });
-    
-    window.addEventListener('click', function (event) {
-        if (event.target == nextRound) {
-                modal.style.display = 'none';
-                modal.remove(); 
-        }
-    });
-}
+
+        let nextRoundButton = document.getElementById('nextRound');
+
+        nextRoundButton.addEventListener('click', function (event) {
+        
+            if (countButton === 5) {
+                console.log("chamando");
+                
+                declareWinner(racerOneObject,racerTwoObject);
+
+            }
+            countButton = 0;
+        });
+
     } else {
         console.error('Não foi possível obter os nomes dos corredores.');
     }
 }
+
+function declareWinner(racerOneObject, racerTwoObject) {
+    let winner;
+
+    if (racerOneObject.PONTOS > racerTwoObject.PONTOS) {
+        winner = racerOneObject;
+    } else {
+        winner = racerTwoObject;
+    }
+
+    let colors = winner.COLOR.length > 2 ? 
+        `linear-gradient(to right, ${winner.COLOR[0]}, ${winner.COLOR[1]}, ${winner.COLOR[2]})` :
+        `linear-gradient(to right, ${winner.COLOR[0]}, ${winner.COLOR[1]})`;
+
+
+    let racerOneImage = "./img/" + winner.NOME.toLowerCase() + ".gif";
+    const templateWinner = `
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-content" id="modalContent" style="background: ${colors};">
+                <span class="close-modal" id="closeModal">&times;</span>
+                <div class="winner-info">
+                    <h1>WINNER</h1>
+                    <img src="${racerOneImage.replace(" ", "")}" alt="">
+                    <div>
+                    <h2 style="color: ${winner.fontColor}">${winner.NOME}</h2>
+                    <p>Pontuação: ${winner.PONTOS}</p>
+                    </div> 
+                </div>
+            </div>
+        </div>`;
+
+    document.querySelector(".container-winner").insertAdjacentHTML('afterbegin', templateWinner);
+
+
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.getElementById('closeModal');
+    const spanCloseModal = document.getElementById('.close-modal');
+
+    closeModal.addEventListener('click', function () {
+        modalOverlay.remove();
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === modalOverlay) {
+            modalOverlay.remove();
+        }
+    });
+
+    spanCloseModal.addEventListener('click', function () {
+        modalOverlay.remove();
+    });
+
+}
+
 
 
 async function getRandomBlock() {
