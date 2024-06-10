@@ -174,8 +174,8 @@ async function playRaceEngine(racerOne, racerTwo) {
             let diceResult2 = await rollDice();
 
 
-            let totalTestSkill1 = isNaN;
-            let totalTestSkill2 = isNaN;
+            let totalTestSkill1 = "";
+            let totalTestSkill2 = "";
             let logResult1 = "";
             let logResult2 = "";
             let winnerRound = "";
@@ -258,6 +258,7 @@ async function playRaceEngine(racerOne, racerTwo) {
                         <img style="box-shadow: 0px 0px 5px 7px ${racerTwo.shadowBorder}; border: 10px double ${racerTwo.shadowBorder}" 
                             src="${racerTwoImage.toLowerCase().replace(" ", "")}" alt="">
                     </div>
+
                     <div class="container-attribute">
                         <div class="attribute-racerOne">
                             <h3 style="color:${racerOne.fontColor}">${racerOne.NOME}</h3>
@@ -265,7 +266,6 @@ async function playRaceEngine(racerOne, racerTwo) {
                             <p>Manobrabilidade: <span style="color: ${colormaneuverability}">${racerOne.MANOBRABILIDADE}</span></p>
                             <p> Poder: <span style="color: ${colorPower}">${racerOne.PODER}</span></p>
                         </div>
-
                         <div class="attribute-racerTwo" >
                             <h3 style="color: ${racerTwo.fontColor}" >${racerTwo.NOME}</h3>
                             <p> Velocidade: <span style="color: ${colorVelocity}">${racerTwo.VELOCIDADE}</span></p>
@@ -273,6 +273,23 @@ async function playRaceEngine(racerOne, racerTwo) {
                             <p> Poder: <span style="color: ${colorPower}">${racerTwo.PODER}</span></p>
                         </div>
                     </div>
+
+                    
+                            <div class="containerTitlePoints">
+                                <h1 class="titlePoints"> PLACAR DE PONTOS</h1>      
+                            </div>
+
+                        <div class="containerPointsResults">
+                            
+                            <div class="RacerOnePoints">
+                            <h3 style="color: ${racerOne.fontColor}; text-shadow: 0px 20px 10px ${racerOne.fontColor}">${racerOne.PONTOS}</h3>
+                            </div>
+                            <h1 class="vs-points">⚡</h1>
+                            <div class="RacerTwoPoints">
+                            <h3 style="color:${racerTwo.fontColor}; text-shadow: 0px 20px 10px ${racerTwo.fontColor}">${racerTwo.PONTOS}</h3>
+                            </div>
+                        </div>
+                    
         
                     <div class="modal-content-results">
                         <h2>${battleRound}</h2>

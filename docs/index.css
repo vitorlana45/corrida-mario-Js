@@ -69,6 +69,12 @@ body {
             align-items: center;
             flex-direction: row;
             width: 50%;
+
+            >.btnOpenModal:hover{
+                border: 10px double #00cf11;
+                border-radius: 7px;
+                color: rgb(255, 0, 0);
+            }
             
 
             .btnOpenModal {
@@ -80,12 +86,13 @@ body {
                 height: 20%;
                 padding: 50px;
 
-                border: 10px double #fffcfc;
+                border: 10px double #93bfc7;
                 border-radius: 7px;
                 font-family: 'Press Start 2P', cursive;
-                color: #FFD700; 
-                text-shadow: #00eaff 6px 3px 1px; 
+                color: #ffffff; 
+                text-shadow: rgb(2, 2, 2) 6px 3px 1px; 
                 scale: 1.4;  
+                font-size: 38px;
 
 
                 background-image: url('./img/blockImage.png');
@@ -94,7 +101,8 @@ body {
                 background-size: 20px;
                 position: relative;                
                 cursor: pointer;
-                animation: bounce 7s infinite ; 
+
+
             }
 
             /* Estilo para o modal */
@@ -349,25 +357,32 @@ body {
     position: fixed;
     
     background-image: url('./img/contentModalGame.jpeg');
-    background-size: 42%;
-    
+    background-size: 42%;   
 }
 
 .play-modal-content {
-    padding: 0;
     margin: 0;
     padding: 20px;
     width: 100%;
     background-color: #606c70; 
     border: double 10px #313131 ;
     border-radius: 7px;
-    width: 75%;
+    width: 70%;
     align-items: center;
     justify-content: center;
     border: double rgb(255, 255, 255) 23px;
-    scale: 0.9;
 
 
+    @media screen and (min-width: 440px){
+        scale: 0.8 0.7; 
+        font-size:8px;
+    }
+
+    @media screen and (max-width: 2440px) {
+        scale: 0.56; 
+        font-size: 22px;
+        width: 100%;
+    }
     h2 {
         display: flexbox;
         justify-content: center;
@@ -480,7 +495,6 @@ body {
                     border-radius: 8px;
                     font-size: 18px;
                     text-align: center;
-
                 }
 
                 >p{
@@ -502,7 +516,7 @@ body {
                 border: solid 4px white;
                 font-family: 'Press Start 2P', cursive;
                 border-radius: 7px;
-                font-size: 14px;
+                font-size: 25px;
                 scale: 0.9;
 
                 background-color: gold;
@@ -511,7 +525,7 @@ body {
             >button:hover {
                 background-color: red;
                 color: white;
-                font-size: 18px;
+                font-size: 30px;
             }
         }
 
@@ -526,6 +540,75 @@ body {
 .close:hover,
 .close:focus {
     color: #999; 
+}
+
+.containerTitlePoints{
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+
+    >.titlePoints{
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+    border: 8px double white;
+    padding: 20px;
+    color: white;
+    font-size: 30px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    background-color: #00000077;
+    width: 89%;
+    animation: resultsBounceNeon 1.5s infinite;
+
+    }
+}
+
+.containerPointsResults{
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    margin: 25px;
+
+    >.RacerOnePoints, 
+    .RacerTwoPoints{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: 8px double white;
+        padding: 20px;
+        color: white;
+        font-size: 18px;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        background-color: #00000077;
+        width: 35%;
+        font-size: 25px;
+    }
+
+    >.vs-points{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .RacerOnePoints,
+    .vs-points,
+    .RacerTwoPoints {
+        margin-left: 0;
+        width: 100%;
+    }
 }
 
 /* Estilo para o overlay do modal */
@@ -559,7 +642,7 @@ body {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        scale: 0.7;
+        scale: 0.6;
         overflow: hidden;
         border: solid 10px rgb(255, 255, 255);
         animation: pulseShadow 1s infinite;
@@ -582,8 +665,6 @@ body {
         >h1 {
             margin-bottom: 100px;
             animation: changeColorWinnerName 2.2s infinite;
-
-            
         }
 
 
@@ -596,7 +677,7 @@ body {
                 border-top: double  8px white;
                 border-radius: 50px;
                 box-shadow: white 0px 0px 40px;
-                scale: 1.1;
+                scale: 0.7;
                 
             }
 
@@ -653,27 +734,6 @@ body {
     
 }
 
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        font-size: 60px;
-    }
-    40% {
-        font-size: 55px;
-        text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #F5F5DC;
-        color: #FFD700;
-    }
-    60% {
-        font-size: 55px;
-        color: #FFD700;
-        text-shadow: 3px 3px 2px #000, 0 0 5px #F5F5DC, 0 0 10px #F5F5DC, 0 0 20px #00eaff;
-    }
-    80% {
-        font-size: 55px;
-        color: #FFD700;
-        text-shadow: 3px 3px 2px #000, 0 0 5px #05e5b4, 0 0 10px #05e5b4, 0 0 20px #05e5b4;
-    }
-}
 
 @keyframes resultsBounceNeon {
     0%, 20%, 50%, 80%, 100% {
