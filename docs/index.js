@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-let countButton =1;
+let countButton = 1;
 async function playRaceEngine(racerOne, racerTwo) {
 
     let racerOneObject = racerOne;
@@ -161,6 +161,7 @@ async function playRaceEngine(racerOne, racerTwo) {
 
         for (let round = 1; round <= 5; round++) {
 
+            countButton = round;
             if (round === 1) {
                 racerOneObject.PONTOS = 0;
                 racerTwoObject.PONTOS = 0;
@@ -291,8 +292,7 @@ async function playRaceEngine(racerOne, racerTwo) {
                             <h3 style="color:${racerTwo.fontColor}; text-shadow: 0px 20px 10px ${racerTwo.fontColor}">${racerTwo.PONTOS}</h3>
                             </div>
                         </div>
-                    
-        
+
                     <div class="modal-content-results">
                         <h2>${battleRound}</h2>
                         <p><span style="color: ${racerOne.fontColor}; font-family: 'Press Start 2P', cursive; text-shadow: 0px 0px 15px ${racerOne.shadowBorder};">${racerOne.NOME}</span> ${logResult1}</p>
@@ -327,8 +327,6 @@ async function playRaceEngine(racerOne, racerTwo) {
             });  
 
 
-            console.log("countButton: ", countButton);
-            countButton++;
         }
 
         let nextRoundButton = document.getElementById('nextRound');
@@ -336,8 +334,9 @@ async function playRaceEngine(racerOne, racerTwo) {
         nextRoundButton.addEventListener('click', function (event) {
 
         
-            if (countButton > 5) {
+            if (countButton == 5) {
                 console.log("chamando");
+                console.log("valor do round", countButton)
 
                 declareWinner(racerOneObject,racerTwoObject);
 

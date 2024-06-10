@@ -371,18 +371,9 @@ body {
     align-items: center;
     justify-content: center;
     border: double rgb(255, 255, 255) 23px;
+    scale: 0.56;
 
 
-    @media screen and (min-width: 440px){
-        scale: 0.8 0.7; 
-        font-size:8px;
-    }
-
-    @media screen and (max-width: 2440px) {
-        scale: 0.56; 
-        font-size: 22px;
-        width: 100%;
-    }
     h2 {
         display: flexbox;
         justify-content: center;
@@ -485,6 +476,7 @@ body {
                 color: white;
                 border-radius: 7px;
                 scale: 0.9;
+                font-size: 20px;
 
                 
 
@@ -550,6 +542,7 @@ body {
     justify-content: center;
     text-align: center;
     margin: 20px;
+        
 
     >.titlePoints{
     text-align: center;
@@ -598,15 +591,6 @@ body {
         align-items: center;
         justify-content: center;
 
-    }
-}
-
-@media (max-width: 768px) {
-    .RacerOnePoints,
-    .vs-points,
-    .RacerTwoPoints {
-        margin-left: 0;
-        width: 100%;
     }
 }
 
