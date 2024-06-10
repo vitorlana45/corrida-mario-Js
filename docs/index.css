@@ -564,7 +564,6 @@ body {
     background-color: #00000077;
     width: 89%;
     animation: resultsBounceNeon 1.5s infinite;
-
     }
 }
 
@@ -742,13 +741,11 @@ body {
         font-size: 35px;
     }
     40% {
-        border-radius: 3px 0 20% 1px;
         text-shadow: 3px 3px 2px #000, 0 0 5px #FF4500, 0 0 10px #FF4500, 0 0 20px #FF4500; 
         color: #FF0000; 
         margin-left: 20px;
     }
     60% {
-        border-radius: 7px 0 30% 1px;
         color: #00FF00;
         text-shadow: 3px 3px 2px #000, 0 0 5px #1E90FF, 0 0 10px #1E90FF, 0 0 20px #1E90FF; 
     }

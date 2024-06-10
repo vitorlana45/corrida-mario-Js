@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-let countButton =0;
+let countButton =1;
 async function playRaceEngine(racerOne, racerTwo) {
 
     let racerOneObject = racerOne;
@@ -228,6 +228,7 @@ async function playRaceEngine(racerOne, racerTwo) {
 
                 if (powerResult1 > powerResult2 && racerTwoObject.PONTOS > 0) {
                     racerTwoObject.PONTOS--;
+                    racerOneObject.PONTOS++;
                     console.log("racer 2 com pontos");
                     winnerRound = `${racerOneObject.NOME} vencceu o confronto ${racerTwoObject.NOME} perdeu um ponto!`
                     winnerRound = `<span style="color: ${racerOne.fontColor}">${racerOneObject.NOME}</span> venceu o confronto <span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME} </span> perdeu um ponto!`
@@ -235,6 +236,7 @@ async function playRaceEngine(racerOne, racerTwo) {
                 }
                 else if (powerResult2 > powerResult1 && racerOneObject.PONTOS > 0) {
                     racerOneObject.PONTOS--;
+                    racerTwoObject.PONTOS++;
                     winnerRound = `<span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME}</span> venceu o confronto  <span style="color: ${racerOne.fontColor}">${racerOneObject.NOME} </span> perdeu um ponto!`
                     console.log("racer 1 com pontos");
                 } else if (powerResult1 === powerResult2) {
@@ -325,16 +327,18 @@ async function playRaceEngine(racerOne, racerTwo) {
             });  
 
 
+            console.log("countButton: ", countButton);
             countButton++;
         }
 
         let nextRoundButton = document.getElementById('nextRound');
 
         nextRoundButton.addEventListener('click', function (event) {
+
         
-            if (countButton === 5) {
+            if (countButton > 5) {
                 console.log("chamando");
-                
+
                 declareWinner(racerOneObject,racerTwoObject);
 
             }
@@ -348,6 +352,8 @@ async function playRaceEngine(racerOne, racerTwo) {
 
 function declareWinner(racerOneObject, racerTwoObject) {
     let winner;
+
+    console.log("entrou dentro do declare", "corredor1: ",racerOneObject.PONTOS, "corredor2", racerTwoObject.PONTOS);
 
     if (racerOneObject.PONTOS > racerTwoObject.PONTOS) {
         winner = racerOneObject;
