@@ -87,6 +87,8 @@ const inBattle = false;
     });
 }())
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const selectedCards = [];
@@ -97,9 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
         card.addEventListener('mouseover', function () {
 
             if (!selectedCards.includes(card)) {
-                card.style.borderImage = 'linear-gradient(to right, #39ff14, #ff073a, #00ffff, #ff4500, #ffa500) 1';
                 card.style.scale = '1.1';
+                card.style.transition = 'all 0.2s ease';
                 card.style.borderRadius = '10px';
+                card.style.borderImage = 'linear-gradient(to right, cyan, white,white, cyan) 1';
+                card.style.boxShadow = '0px 0px 18px 1px white, 0 2px 10px 0 rgba(0, 0, 0, 0.19)';                
+
                 card.classList.add('selected');
             }
         });
@@ -109,6 +114,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.borderImage = '';
                 card.style.scale = '';
                 card.style.borderRadius = '';
+                card.style.boxShadow = '';
+
+
             }
         });
 
@@ -133,19 +141,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Se o cartão não estiver selecionado, selecione-o
                 selectedCards.push(card);
-                card.style.borderImage = 'linear-gradient(to right, #39ff14, #ff073a, #00ffff, #ff4500, #ffa500) 1';
+                card.style.borderImage = 'linear-gradient(to right, cyan, white,white, cyan) 1';
+                card.style.boxShadow = '0px 0px 18px 1px white, 0 2px 10px 0 rgba(0, 0, 0, 0.19)';
                 card.style.scale = '1.2';
                 card.style.borderRadius = '10px';
 
                 let racerOne = selectedCards[0].querySelector('.player-name').textContent.split(': ')[1]
-                console.log("racerOne aqui e: ", racerOne)
                 let racerTwo = selectedCards[1].querySelector('.player-name').textContent.split(': ')[1]
-                console.log("racerTwo aqui e: ", racerTwo)
 
                 let findedRacerOne = playersList.find(player => player.NOME === racerOne);
                 let findedRacerTwo = playersList.find(player => player.NOME === racerTwo);
 
                 playRaceEngine(findedRacerOne, findedRacerTwo)
+                footer();
             }
         });
     });
@@ -248,7 +256,6 @@ async function playRaceEngine(racerOne, racerTwo) {
 
             let racerOneImage = "./img/" + racerOneObject.NOME.toLowerCase() + ".gif";
             let racerTwoImage = "./img/" + racerTwoObject.NOME.toLowerCase() + ".gif";
-
 
             const modalStartRace = `
             <div class="playContainer" id="playModal">
@@ -402,10 +409,7 @@ function declareWinner(racerOneObject, racerTwoObject) {
     spanCloseModal.addEventListener('click', function () {
         modalOverlay.remove();
     });
-
 }
-
-
 
 async function getRandomBlock() {
     let random = Math.random();
