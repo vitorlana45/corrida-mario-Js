@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 if (selectedCards.some(selectedCard => selectedCard.querySelector('.player-name').textContent.split(': ')[1] === cardName)) {
-                    console.log('não pode haver cards repetidos', card);
                     return;
                 }
 
@@ -238,7 +237,6 @@ async function playRaceEngine(racerOne, racerTwo) {
                 if (powerResult1 > powerResult2 && racerTwoObject.PONTOS > 0) {
                     racerTwoObject.PONTOS--;
                     racerOneObject.PONTOS++;
-                    console.log("racer 2 com pontos");
                     winnerRound = `${racerOneObject.NOME} vencceu o confronto ${racerTwoObject.NOME} perdeu um ponto!`
                     winnerRound = `<span style="color: ${racerOne.fontColor}">${racerOneObject.NOME}</span> venceu o confronto <span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME} </span> perdeu um ponto!`
 
@@ -247,7 +245,6 @@ async function playRaceEngine(racerOne, racerTwo) {
                     racerOneObject.PONTOS--;
                     racerTwoObject.PONTOS++;
                     winnerRound = `<span style="color: ${racerTwo.fontColor}">${racerTwoObject.NOME}</span> venceu o confronto  <span style="color: ${racerOne.fontColor}">${racerOneObject.NOME} </span> perdeu um ponto!`
-                    console.log("racer 1 com pontos");
                 } else if (powerResult1 === powerResult2) {
                     winnerRound = `<span style="color: ${colorSumPoints}">Confronto empatado!`;
                 }
@@ -342,8 +339,6 @@ async function playRaceEngine(racerOne, racerTwo) {
 
         
             if (countButton == 5) {
-                console.log("chamando");
-                console.log("valor do round", countButton)
 
                 declareWinner(racerOneObject,racerTwoObject);
 
@@ -358,8 +353,6 @@ async function playRaceEngine(racerOne, racerTwo) {
 
 function declareWinner(racerOneObject, racerTwoObject) {
     let winner;
-
-    console.log("entrou dentro do declare", "corredor1: ",racerOneObject.PONTOS, "corredor2", racerTwoObject.PONTOS);
 
     if (racerOneObject.PONTOS > racerTwoObject.PONTOS) {
         winner = racerOneObject;
@@ -418,7 +411,6 @@ async function getRandomBlock() {
     switch (true) {
         case random < 0.33:
             result = "RETA";
-            console.log("deu reta dentro")
             break;
         case random < 0.66:
             result = "CURVA";
